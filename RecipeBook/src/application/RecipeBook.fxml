@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.RecipeBookController">
+   <children>
+      <MenuBar minWidth="400.0" prefHeight="25.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Create New" />
+                  <MenuItem mnemonicParsing="false" text="Open File..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Edit Current" />
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane layoutY="25.0" prefHeight="800.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Recipe View">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="800.0" prefWidth="600.0">
+                           <children>
+                              <Label alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="5.0" prefHeight="65.0" prefWidth="575.0" text="Recipe Title: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane layoutY="70.0" prefHeight="700.0" prefWidth="600.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="600.0">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="11.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" width="555.0" />
+                                          <Text fill="#fff1f1" layoutX="10.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IMAGE GOES HERE" textAlignment="CENTER" wrappingWidth="555.13671875" />
+                                          <ImageView fitHeight="200.0" fitWidth="551.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="475.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+                                          <Separator layoutY="412.0" prefHeight="9.0" prefWidth="585.0" />
+                                          <Label alignment="TOP_LEFT" layoutX="11.0" layoutY="239.0" prefHeight="169.0" prefWidth="558.0" text="Short Description here.                                                                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrapText="true" />
+                                          <Label alignment="TOP_LEFT" layoutX="9.0" layoutY="421.0" prefHeight="169.0" prefWidth="558.0" text="Recipe Stuff would not go here.                                                                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrapText="true" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Search View">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane layoutX="14.0" layoutY="41.0" prefHeight="717.0" prefWidth="566.0">
+                           <children>
+                              <ListView layoutX="2.0" layoutY="-1.0" prefHeight="720.0" prefWidth="563.0" />
+                              <TableView editable="true" layoutX="1.0" layoutY="-2.0" prefHeight="722.0" prefWidth="565.0">
+                                <columns>
+                                  <TableColumn prefWidth="99.0" text="Title">
+                                       <contextMenu>
+                                          <ContextMenu>
+                                            <items>
+                                              <MenuItem mnemonicParsing="false" />
+                                            </items>
+                                          </ContextMenu>
+                                       </contextMenu>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="94.0" text="Author" />
+                                  <TableColumn prefWidth="97.0" text="Category" />
+                                    <TableColumn prefWidth="112.0" text="Cuisine" />
+                                    <TableColumn prefWidth="88.0" text="Date Created" />
+                                    <TableColumn prefWidth="74.0" text="Location" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </Pane>
+                        <Label layoutX="240.0" layoutY="8.0" prefHeight="25.0" prefWidth="65.0" text="Search by:" />
+                        <TextField layoutX="437.0" layoutY="8.0" prefHeight="25.0" prefWidth="144.0" />
+                        <ComboBox layoutX="305.0" layoutY="8.0" prefHeight="25.0" prefWidth="127.0" promptText="Title">
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Title" />
+                                    <MenuItem mnemonicParsing="false" text="Cuisine" />
+                                    <MenuItem mnemonicParsing="false" text="Favorites" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </ComboBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
