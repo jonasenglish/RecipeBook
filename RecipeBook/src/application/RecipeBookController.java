@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Recipe.Category;
@@ -24,12 +25,13 @@ public class RecipeBookController implements Initializable {
 		Recipe recipe = new Recipe();
 		recipe.name = "Spicy Gyro";
 		recipe.author = "Jonas English";
-		recipe.cookTime = 60;
+		recipe.prepTime = 60;
 		recipe.cuisine = "Mediterranian";
 		recipe.favorite = true;
 		Ingredient cinammon = new Ingredient();
 		cinammon.ingredientName = "Cinnamon";
 		cinammon.ingredientAmount = "1 tsp.";
+		recipe.ingredients = new ArrayList<Ingredient>();
 		recipe.ingredients.add(cinammon);
 		recipe.yield = 4;
 		recipe.cookTime = 120;
