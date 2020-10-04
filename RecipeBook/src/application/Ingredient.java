@@ -2,6 +2,7 @@ package application;
 
 //This is the class object for containing ingredient information.
 public class Ingredient {
+	
 		public String ingredientName;
 		public String ingredientAmount;
 		

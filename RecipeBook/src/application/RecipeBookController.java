@@ -20,6 +20,7 @@ public class RecipeBookController implements Initializable {
 		
 	}
 	
+	//Button to test the Recipe Object - Outputs to Console.
 	  @FXML
 	void printRecipeButton(ActionEvent event) {
 		Recipe recipe = new Recipe();
@@ -28,14 +29,12 @@ public class RecipeBookController implements Initializable {
 		recipe.prepTime = 60;
 		recipe.cuisine = "Mediterranian";
 		recipe.favorite = true;
-		Ingredient cinammon = new Ingredient();
-		cinammon.ingredientName = "Cinnamon";
-		cinammon.ingredientAmount = "1 tsp.";
-		recipe.ingredients = new ArrayList<Ingredient>();
-		recipe.ingredients.add(cinammon);
+		recipe.addIngredients("Cinammon", "1 tsp.");;
 		recipe.yield = 4;
 		recipe.cookTime = 120;
 		recipe.category = Category.MAINDISHES;
+		recipe.desc = "Some Spicy Gyros right here.";
+		recipe.instruct = "Make it!";
 		recipe.printRecipe();
 	}
 	

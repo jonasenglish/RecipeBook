@@ -1,17 +1,27 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 // This is the Object Class to contain all information on recipes
 public class Recipe {
 
+	//Initializing ingredients when the object is made.
+	public Recipe(){
+		ingredients = new ArrayList<Ingredient>();
+	}
+	
 	//The Recipe's name, e.g. "Spicy Gyros"
 	public String name;
 	//The recipe author's name.
 	public String author;
 	//The cuisine type of the recipe, e.g. "Mediterranean"
 	public String cuisine;
+	//Description
+	public String desc;
+	//Recipe instructions
+	public String instruct;
+	//URL to the Recipe Image
+	public String imageURL;
 	
 	//The yield of the recipe, e.g. (1) serving(s)
 	public int yield;
@@ -35,8 +45,15 @@ public class Recipe {
 	//Whether or not this recipe has been favorited.
 	public boolean favorite;
 	
+	//Nutritional information.
+	public Nutrition nutrition;
+	
+	//Adds an Ingredient to given Ingredient List
 	public void addIngredients(String ingredientName, String ingrediantAmount){
-		
+		Ingredient ingredient = new Ingredient();
+		ingredient.ingredientAmount = ingrediantAmount;
+		ingredient.ingredientName = ingredientName;
+		this.ingredients.add(ingredient);
 	}
 	
 	public void printRecipe(){
@@ -44,12 +61,14 @@ public class Recipe {
 		System.out.println("Author: " + this.author);
 		System.out.println("Cuisine: " + this.cuisine);
 		System.out.println("Yield: " + this.yield);
+		System.out.println("Description: " + this.desc);
 		System.out.println("Prep Time: " + this.prepTime + " minutes");
 		System.out.println("Cook Time: " + this.cookTime + " minutes");
 		System.out.println("Category: " + this.category);
 		for(int i = 0; i < ingredients.size(); i++){
 			this.ingredients.get(i).printIngrediant();
 		}
+		System.out.println("Instructions: " + this.instruct);
 		if(this.favorite){
 			System.out.println("This recipe is a Favorite");
 		}
