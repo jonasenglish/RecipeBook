@@ -65,6 +65,20 @@ public class Recipe {
 		System.out.println("Prep Time: " + this.prepTime + " minutes");
 		System.out.println("Cook Time: " + this.cookTime + " minutes");
 		System.out.println("Category: " + this.category);
+		if(this.nutrition != null){
+			System.out.println("Total Servings: " + this.nutrition.totalServ );
+			System.out.println("Serving Amount: " + this.nutrition.amountServ );
+			System.out.println("Calories: " + this.nutrition.calories );
+			System.out.println("Saturated Fat: " + this.nutrition.satFat );
+			System.out.println("Cholesterol: " + this.nutrition.cholest );
+			System.out.println("Sodium: " + this.nutrition.sodium );
+			System.out.println("Total Carbs: " + this.nutrition.totalCarb );
+			System.out.println("Dietary Fiber: " + this.nutrition.dietFiber );
+			System.out.println("Sugar(g): " + this.nutrition.sugar);
+			System.out.println("Protien: " + this.nutrition.protien );
+			System.out.println("Vitamin A: " + this.nutrition.vitaminA );
+			System.out.println("Vitamin C: " + this.nutrition.vitaminC );
+		}
 		for(int i = 0; i < ingredients.size(); i++){
 			this.ingredients.get(i).printIngrediant();
 		}

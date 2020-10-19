@@ -1,5 +1,8 @@
 package application;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -36,6 +39,37 @@ public class RecipeBookController implements Initializable {
 		recipe.desc = "Some Spicy Gyros right here.";
 		recipe.instruct = "Make it!";
 		recipe.printRecipe();
+		Nutrition nutrition = new Nutrition();
+		nutrition.totalServ = 4;
+		nutrition.amountServ = 4;
+		nutrition.calories = 250;
+		nutrition.totalFat = 1.0;
+		nutrition.satFat = 2.0;
+		nutrition.cholest = 3.0;
+		nutrition.sodium = 4.2;
+		nutrition.totalCarb = 6.5;
+		nutrition.dietFiber = 18.54;
+		nutrition.sugar = 20;
+		nutrition.protien = 9001;
+		nutrition.vitaminA = 100;
+		nutrition.vitaminC = 777;
+		recipe.nutrition = nutrition;
+		RecipeHandler recipeHandler = new RecipeHandler();
+		File file = null;
+		try {
+			file = recipeHandler.save(recipe);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Recipe newRecipe = new Recipe();
+		try {
+			newRecipe = recipeHandler.load(file);
+			newRecipe.printRecipe();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
