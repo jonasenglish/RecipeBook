@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 import application.Recipe.Category;
@@ -14,6 +15,10 @@ public class RecipeHandler {
 	
 	//Path to the folder containing recipes.
 	public String recipeFolderPath;
+	
+	//Dictionary containing available recipes and their associated file
+	public Hashtable<Recipe, File> recipeFileDict;
+	public ArrayList<Recipe> recipes;
 	
 	//The Default path to the Recipes Folder is in the Same folder as the application.
 	public RecipeHandler(){
@@ -87,6 +92,7 @@ public class RecipeHandler {
 		
 		Scanner scanner = new Scanner(file);
 		
+		try{
 		recipe.name = scanner.nextLine();
 		recipe.author = scanner.nextLine();
 		recipe.cuisine = scanner.nextLine();
@@ -105,6 +111,9 @@ public class RecipeHandler {
 		
 		recipe.nutrition = loadNutrition(scanner);
 		recipe.ingredients = loadIngredient(scanner);
+		} catch(Exception e){
+			throw e;
+		}
 		
 		return recipe;
 	}
@@ -162,4 +171,25 @@ public class RecipeHandler {
 		
 	}
 	
+	public Hashtable<Recipe, File> getRecipes(){
+		Hashtable<Recipe, File> recipeFileDict = new Hashtable<Recipe, File>();
+		recipes = new ArrayList<Recipe>();
+		File folder = new File(recipeFolderPath);
+		try{
+		for(final File file : folder.listFiles()){
+			if(file.isFile() && file.getName().contains(".rcp")){
+				try{
+					Recipe recipe = load(file);
+					recipes.add(recipe);
+					recipeFileDict.put(recipe, file);
+				}catch(Exception e){
+					System.out.print("Error, Something went wrong while reading " + file.getName());
+				}
+			}
+		}
+		}catch(NullPointerException e){
+			System.out.println("Error, Recipe Folder is empty!");
+		}
+		return recipeFileDict;
+	}
 }
