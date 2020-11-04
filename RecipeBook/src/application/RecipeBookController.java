@@ -31,7 +31,6 @@ public class RecipeBookController implements Initializable {
     @FXML private TableColumn<TableData, LocalDate> dateTableColumn;
     @FXML private TableColumn<TableData, String> categoryTableColumn;
 
-
     @FXML
     private TextField searchText;
     
@@ -59,7 +58,7 @@ public class RecipeBookController implements Initializable {
 		    row.setOnMouseClicked(event -> {
 		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
 		            TableData rowData = row.getItem();
-		            System.out.println(rowData.getTitle());
+		            recipeModel.GetRecipeFromRowData(rowData);
 		        }
 		    });
 		    return row ;

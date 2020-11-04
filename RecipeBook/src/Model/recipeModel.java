@@ -82,7 +82,7 @@ public class recipeModel {
 	private static TableData favoriteSearch(Recipe recipe, File file, String string) {
 		if(recipe.name.toLowerCase().contains(string.toLowerCase()) && recipe.favorite == true){
 			LocalDate date = getLocalDate(file);
-			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date);
+			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date, recipe);
 			return nData;
 		}
 		return null;
@@ -91,7 +91,7 @@ public class recipeModel {
 	private static TableData categorySearch(Recipe recipe, File file, String string) {
 		if(recipe.category.toString().toLowerCase().contains(string.toLowerCase())){
 			LocalDate date = getLocalDate(file);
-			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date);
+			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date, recipe);
 			return nData;
 		}
 		return null;
@@ -100,7 +100,7 @@ public class recipeModel {
 	private static TableData cuisineSearch(Recipe recipe, File file, String string) {
 		if(recipe.cuisine.toLowerCase().contains(string.toLowerCase())){
 			LocalDate date = getLocalDate(file);
-			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date);
+			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date, recipe);
 			return nData;
 		}
 		return null;
@@ -109,7 +109,7 @@ public class recipeModel {
 	private static TableData authorSearch(Recipe recipe, File file, String string) {
 		if(recipe.author.toLowerCase().contains(string.toLowerCase())){
 			LocalDate date = getLocalDate(file);
-			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date);
+			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date, recipe);
 			return nData;
 		}
 		return null;
@@ -118,7 +118,7 @@ public class recipeModel {
 	private static TableData titleSearch(Recipe recipe, File file, String string) {
 		if(recipe.name.toLowerCase().contains(string.toLowerCase())){
 			LocalDate date = getLocalDate(file);
-			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date);
+			TableData nData = new TableData(recipe.name, recipe.author, recipe.category.toString(), recipe.cuisine, file.getAbsolutePath(), date, recipe);
 			return nData;
 		}
 		return null;
@@ -186,5 +186,12 @@ public class recipeModel {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	//Gets the Recipe from the Search Table
+	public static Recipe GetRecipeFromRowData(TableData rowData) {
+		Recipe recipe = rowData.getRecipe();
+		//recipe.printRecipe(); //Print to Console.
+		return recipe;
 	}
 }

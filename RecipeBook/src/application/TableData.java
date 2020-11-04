@@ -8,14 +8,16 @@ public class TableData {
 
 	private SimpleStringProperty title, author, category, cuisine, location;
 	private LocalDate date;
+	private Recipe recipe;
 	
-	public TableData(String title, String author, String category, String cuisine, String location, LocalDate date){
+	public TableData(String title, String author, String category, String cuisine, String location, LocalDate date, Recipe recipe){
 		this.title = new SimpleStringProperty(title);
 		this.author = new SimpleStringProperty(author);
 		this.category = new SimpleStringProperty(category);
 		this.cuisine = new SimpleStringProperty(cuisine);
 		this.location = new SimpleStringProperty(location);
 		this.date = date;
+		this.recipe = recipe;
 	}
 
 	public String getTitle() {
@@ -64,6 +66,14 @@ public class TableData {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	
