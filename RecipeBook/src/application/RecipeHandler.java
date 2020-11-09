@@ -56,8 +56,8 @@ public class RecipeHandler {
 	
 		//Saving to File
 		FileWriter fileWriter = new FileWriter(recipeFile);
-		fileWriter.write(recipe.name + "\n" + recipe.author + "\n" + recipe.cuisine + "\n" + recipe.desc + "\n" + recipe.instruct + "\n" + 
-		recipe.imageURL + "\n" + recipe.yield + "\n" + recipe.prepTime + "\n" + recipe.cookTime + "\n" + recipe.category + "\n" + recipe.favorite);
+		fileWriter.write(recipe.getName() + "\n" + recipe.getAuthor() + "\n" + recipe.getCuisine() + "\n" + recipe.getDesc() + "\n" + recipe.getInstruct() + "\n" + 
+		recipe.imageURL + "\n" + recipe.getYield() + "\n" + recipe.getPrepTime() + "\n" + recipe.getCookTime() + "\n" + recipe.getCategory() + "\n" + recipe.favorite);
 		saveNutrition(recipe.nutrition, fileWriter);
 		saveIngredient(recipe.ingredients, fileWriter);
 		fileWriter.close();
