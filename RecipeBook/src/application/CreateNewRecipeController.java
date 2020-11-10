@@ -174,7 +174,7 @@ public class CreateNewRecipeController implements Initializable {
 	}
 
 	@FXML
-	public void onClickHomePage(MouseEvent event) {
+	public void onClickHomePage(ActionEvent event) {
 		
 		try {
 		Parent homePage = FXMLLoader.load(getClass().getResource("/application/RecipeBook.fxml"));
