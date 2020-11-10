@@ -30,6 +30,7 @@ public class recipeModel {
 	//Search for file based on the SearchComboBox and SearchText
 	public static void Search(Hashtable<Recipe, File> recipeFileDict, ObservableList<TableData> data, TextField searchText, 
 		TableView<TableData> tableView, ArrayList<Recipe> recipes, ComboBox<String> searchComboBox) {
+		
 		Alert empty = new Alert(AlertType.WARNING);
 		if(recipeFileDict.isEmpty()){
     		empty.setTitle("No Results");

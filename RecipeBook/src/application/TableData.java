@@ -1,7 +1,6 @@
 package application;
 
 import java.time.LocalDate;
-
 import javafx.beans.property.SimpleStringProperty;
 
 public class TableData {
