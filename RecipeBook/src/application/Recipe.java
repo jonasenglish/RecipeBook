@@ -16,8 +16,13 @@ public class Recipe {
 	public String author;
 	//The cuisine type of the recipe, e.g. "Mediterranean"
 	public String cuisine;
+
 	//Description
 	public String desc;
+	
+	// ingredient list
+	public String ingredientsList;
+
 	//Recipe instructions
 	public String instruct;
 	//URL to the Recipe Image
@@ -38,6 +43,7 @@ public class Recipe {
 		BREADS, ROLLS,
 		DESSERTS, MISCELLANEOUS
 	}
+	
 	public Category category;
 	
 	public ArrayList<Ingredient> ingredients;
@@ -86,5 +92,126 @@ public class Recipe {
 		if(this.favorite){
 			System.out.println("This recipe is a Favorite");
 		}
+		
 	}
+	
+	// I don't want to over-populate our classes with getters and setters
+	// but we'll need to use them
+	// so let's keep them placed at the bottom
+	public String getName() {
+		
+		return this.name;
+		
+	}
+	
+	public void setName(String passedName) {
+		
+		this.name = passedName;
+		
+	}
+	
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getCuisine() {
+		return cuisine;
+	}
+
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public String getInstruct() {
+		return instruct;
+	}
+
+	public void setInstruct(String instruct) {
+		this.instruct = instruct;
+	}
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+
+	public int getYield() {
+		return yield;
+	}
+
+	public void setYield(int yield) {
+		this.yield = yield;
+	}
+
+	public int getPrepTime() {
+		return prepTime;
+	}
+
+	public void setPrepTime(int prepTime) {
+		this.prepTime = prepTime;
+	}
+
+	public int getCookTime() {
+		return cookTime;
+	}
+
+	public void setCookTime(int cookTime) {
+		this.cookTime = cookTime;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public ArrayList<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public boolean isFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
+	}
+
+	public Nutrition getNutrition() {
+		return nutrition;
+	}
+
+	public void setNutrition(Nutrition nutrition) {
+		this.nutrition = nutrition;
+	}
+	
+	public String getIngredientsList() {
+		return ingredientsList;
+	}
+
+	public void setIngredientsList(String ingredientsList) {
+		this.ingredientsList = ingredientsList;
+	}
+	
 }
