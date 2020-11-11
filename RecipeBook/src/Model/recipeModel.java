@@ -12,11 +12,14 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import application.Ingredient;
+import application.IngredientTableData;
 import application.Nutrition;
 import application.Recipe;
 import application.RecipeHandler;
 import application.TableData;
 import application.Recipe.Category;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -194,5 +197,18 @@ public class recipeModel {
 		Recipe recipe = rowData.getRecipe();
 		//recipe.printRecipe(); //Print to Console.
 		return recipe;
+	}
+
+	//Sets up a given IngredientTableView
+	public static ObservableList<IngredientTableData> setUpIngredientTableView(TableView<IngredientTableData> tableView, ArrayList<Ingredient> ingredients){
+		ObservableList<IngredientTableData> observableList = FXCollections.observableArrayList();
+		for(Ingredient ingredient : ingredients){
+			IngredientTableData nData = new IngredientTableData(ingredient.ingredientName, ingredient.ingredientAmount, ingredient);
+			observableList.add(nData);
+		}
+		tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		tableView.setItems(observableList);
+		
+		return observableList;
 	}
 }

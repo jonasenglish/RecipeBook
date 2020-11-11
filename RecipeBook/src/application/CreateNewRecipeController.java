@@ -198,8 +198,10 @@ public class CreateNewRecipeController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		//Copy this into the view page's initialize function
 		ingrediantNameColumn.setCellValueFactory(new PropertyValueFactory<IngredientTableData, String>("ingredientName"));
 		ingrediantAmountColumn.setCellValueFactory(new PropertyValueFactory<IngredientTableData, String>("ingredientAmount"));
+		//--------------------------------------------------
 		observableListITD = FXCollections.observableArrayList();
 		ingrediantTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		ObservableList<String> categoryComboBoxList = FXCollections.observableArrayList("APPETIZERS", "BEVERAGES",
