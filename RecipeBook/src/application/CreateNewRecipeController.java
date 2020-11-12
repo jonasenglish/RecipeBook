@@ -44,6 +44,12 @@ public class CreateNewRecipeController implements Initializable {
     private TableColumn<IngredientTableData, String> ingrediantNameColumn;
 
     @FXML
+    private TableView<IngredientTableData> ingrediantTableView;
+    
+    @FXML
+    private TableColumn<IngredientTableData, String> ingrediantAmountColumn;
+    
+    @FXML
     private TextField author;
 
     @FXML
@@ -65,9 +71,6 @@ public class CreateNewRecipeController implements Initializable {
     private TextField recipeName;
 
     @FXML
-    private TableView<IngredientTableData> ingrediantTableView;
-
-    @FXML
     private CheckBox favoriteButton;
     
     @FXML
@@ -75,9 +78,6 @@ public class CreateNewRecipeController implements Initializable {
 
     @FXML
     private Button addIngredient;
-
-    @FXML
-    private TableColumn<IngredientTableData, String> ingrediantAmountColumn;
 
     @FXML
     private Button deleteIngredient;
@@ -93,7 +93,6 @@ public class CreateNewRecipeController implements Initializable {
 	RecipeHandler recipeHandle = new RecipeHandler();
 	
 	ObservableList<IngredientTableData> observableListITD;
-	
 	
 	@FXML
 	public void onClickSaveRecipe(ActionEvent event) {
@@ -242,6 +241,5 @@ public class CreateNewRecipeController implements Initializable {
 		 ingrediantTableView.setItems(observableListITD);
 		 //System.out.println("DELETED");
 	 }
-	
 
 }

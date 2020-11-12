@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -23,14 +30,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="806.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RecipeBookController">
+<AnchorPane prefHeight="806.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RecipeBookController">
    <children>
       <MenuBar fx:id="myMenuBar" minWidth="400.0" prefHeight="800.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#createPage" text="Create New" />
-                  <MenuItem mnemonicParsing="false" text="Open File..." />
+                  <MenuItem fx:id="openFileOption" mnemonicParsing="false" onAction="#onClickOpenFileOption" text="Open File..." />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Save" />
                   <SeparatorMenuItem mnemonicParsing="false" />
@@ -50,9 +57,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TabPane layoutY="25.0" prefHeight="800.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <TabPane fx:id="tabPane" layoutY="25.0" prefHeight="800.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <tabs>
-          <Tab text="Recipe View">
+          <Tab fx:id="recipeViewTab" text="Recipe View">
             <content>
               <AnchorPane>
                      <children>
@@ -66,7 +73,7 @@
                                              <children>
                                                 <CheckBox layoutX="427.0" layoutY="41.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="74.0" text="Favorite" />
                                                 <Label alignment="CENTER_RIGHT" layoutX="392.0" layoutY="24.0" prefHeight="17.0" prefWidth="123.0" text="By: Author Name" textAlignment="RIGHT" />
-                                                <Label alignment="TOP_LEFT" layoutX="-46.0" layoutY="20.0" prefHeight="42.0" prefWidth="473.0" text="Recipe Title: Spicy Gyro" wrapText="true">
+                                                <Label fx:id="recipeTitleLabel" alignment="TOP_LEFT" layoutX="-46.0" layoutY="20.0" prefHeight="42.0" prefWidth="473.0" text="Recipe Title: Spicy Gyro" wrapText="true">
                                                    <font>
                                                       <Font name="System Bold" size="15.0" />
                                                    </font>
@@ -83,11 +90,10 @@
                                                 </ImageView>
                                              </items>
                                           </SplitPane>
-                                          <TableView layoutY="-8.0" prefHeight="213.0" prefWidth="587.0">
+                                          <TableView fx:id="ingrediantTableView" layoutY="-8.0" prefHeight="213.0" prefWidth="587.0">
                                             <columns>
-                                              <TableColumn prefWidth="265.0" text="Ingrediant Name" />
-                                                <TableColumn prefWidth="20.0" />
-                                              <TableColumn prefWidth="301.0" text="Amount" />
+                                              <TableColumn fx:id="ingrediantNameColumn" prefWidth="292.0" text="Ingrediant Name" />
+                                              <TableColumn fx:id="ingrediantAmountColumn" prefWidth="296.0" text="Amount" />
                                             </columns>
                                           </TableView>
                                           <Group>

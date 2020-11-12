@@ -19,9 +19,6 @@ public class Recipe {
 
 	//Description
 	public String desc;
-	
-	// ingredient list
-	public String ingredientsList;
 
 	//Recipe instructions
 	public String instruct;
@@ -46,6 +43,7 @@ public class Recipe {
 	
 	public Category category;
 	
+	// ingredient list
 	public ArrayList<Ingredient> ingredients;
 	
 	//Whether or not this recipe has been favorited.
@@ -204,14 +202,6 @@ public class Recipe {
 
 	public void setNutrition(Nutrition nutrition) {
 		this.nutrition = nutrition;
-	}
-	
-	public String getIngredientsList() {
-		return ingredientsList;
-	}
-
-	public void setIngredientsList(String ingredientsList) {
-		this.ingredientsList = ingredientsList;
 	}
 	
 }

@@ -208,7 +208,6 @@ public class recipeModel {
 		}
 		tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		tableView.setItems(observableList);
-		
 		return observableList;
 	}
 }

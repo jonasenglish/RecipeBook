@@ -125,7 +125,8 @@ public class RecipeHandler {
 		
 		String check = scanner.next();
 		if(check.equals("NONUTRITION")){
-			System.out.println(check);
+			//System.out.println(check);
+			scanner.nextLine();
 			return nutrition;
 		}else{
 			
@@ -151,13 +152,11 @@ public class RecipeHandler {
 	//Warning: Splitting on "@". Should probably not allow users to input "@" in ingredient names and amounts. - JE
 	//Loads ingredients
 	public ArrayList<Ingredient> loadIngredient(Scanner scanner){
-		
+
 		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 		
 		String line = scanner.nextLine();
-		
 		while(line != null && !line.trim().isEmpty()){
-			//System.out.println(line);
 			String[] ingrediantSplit = line.split("@");
 			Ingredient newIngrediant = new Ingredient();
 			newIngrediant.ingredientName = ingrediantSplit[0];
