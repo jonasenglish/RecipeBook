@@ -6,9 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Optional;
 import java.util.Scanner;
 
+import Model.recipeModel;
 import application.Recipe.Category;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 
 //Class to handle Recipe Files
 public class RecipeHandler {
@@ -190,5 +196,29 @@ public class RecipeHandler {
 			System.out.println("Error, Recipe Folder is empty!");
 		}
 		return recipeFileDict;
+	}
+
+	public void delete(Recipe recipe) {
+		ButtonType yesButton = new ButtonType("Yes", ButtonData.YES);
+		ButtonType noButton = new ButtonType("No", ButtonData.NO);
+		ButtonType okButton = new ButtonType("Ok", ButtonData.OK_DONE);
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to delete " + recipe.name + "?", yesButton, noButton);
+		alert.getButtonTypes().setAll(yesButton, noButton);
+		Optional<ButtonType> result = alert.showAndWait();
+		alert.getButtonTypes().clear();
+		alert.getButtonTypes().add(okButton);
+		if (result.orElse(noButton) == yesButton) {
+			File recipeFile = recipeFileDict.get(recipe);
+			if(recipeFile.delete()){
+				alert.setAlertType(AlertType.INFORMATION);
+				alert.setContentText(recipe.name + " was deleted.");
+				alert.showAndWait();
+				recipeFileDict.remove(recipe);
+			}else{
+				alert.setAlertType(AlertType.ERROR);
+				alert.setContentText("Error, could not delete " + recipeFile.getName() + ".\nAt path:\n " + recipeFile.getPath());
+				alert.showAndWait();
+			}
+		}
 	}
 }

@@ -35,10 +35,10 @@
       <Button layoutX="586.0" layoutY="742.0" mnemonicParsing="false" onAction="#onClickHomePage" onMouseClicked="#onClickHomePage" prefHeight="32.0" prefWidth="92.0" text="Home Page" />
       <Label layoutX="286.0" layoutY="370.0" prefHeight="41.0" prefWidth="160.0" text="Ingredient Amount:" />
       <TextField fx:id="ingredientAmount" layoutX="417.0" layoutY="378.0" prefHeight="25.0" prefWidth="149.0" />
-      <TableView fx:id="ingrediantTableView" layoutX="14.0" layoutY="411.0" prefHeight="285.0" prefWidth="675.0">
+      <TableView fx:id="ingredientTableView" layoutX="14.0" layoutY="411.0" prefHeight="285.0" prefWidth="675.0">
         <columns>
-          <TableColumn fx:id="ingrediantNameColumn" prefWidth="320.0" text="Ingrediant Name" />
-          <TableColumn fx:id="ingrediantAmountColumn" prefWidth="354.0" text="Ingrediant Amount" />
+          <TableColumn fx:id="ingredientNameColumn" prefWidth="320.0" text="Ingrediant Name" />
+          <TableColumn fx:id="ingredientAmountColumn" prefWidth="354.0" text="Ingrediant Amount" />
         </columns>
       </TableView>
       <Label layoutX="366.0" layoutY="124.0" prefHeight="25.0" prefWidth="160.0" text="Category" />

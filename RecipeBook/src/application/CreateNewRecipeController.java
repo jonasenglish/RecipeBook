@@ -21,7 +21,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -29,6 +28,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import Model.recipeModel;
 import application.Recipe;
 import application.Recipe.Category;
 
@@ -41,13 +42,13 @@ public class CreateNewRecipeController implements Initializable {
     private TextField ingredientName;
 
     @FXML
-    private TableColumn<IngredientTableData, String> ingrediantNameColumn;
+    private TableColumn<IngredientTableData, String> ingredientNameColumn;
 
     @FXML
-    private TableView<IngredientTableData> ingrediantTableView;
+    private TableView<IngredientTableData> ingredientTableView;
     
     @FXML
-    private TableColumn<IngredientTableData, String> ingrediantAmountColumn;
+    private TableColumn<IngredientTableData, String> ingredientAmountColumn;
     
     @FXML
     private TextField author;
@@ -197,12 +198,12 @@ public class CreateNewRecipeController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//Copy this into the view page's initialize function
-		ingrediantNameColumn.setCellValueFactory(new PropertyValueFactory<IngredientTableData, String>("ingredientName"));
-		ingrediantAmountColumn.setCellValueFactory(new PropertyValueFactory<IngredientTableData, String>("ingredientAmount"));
-		//--------------------------------------------------
+
+		ingredientNameColumn.setCellValueFactory(new PropertyValueFactory<IngredientTableData, String>("ingredientName"));
+		ingredientAmountColumn.setCellValueFactory(new PropertyValueFactory<IngredientTableData, String>("ingredientAmount"));
+
 		observableListITD = FXCollections.observableArrayList();
-		ingrediantTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		ingredientTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		ObservableList<String> categoryComboBoxList = FXCollections.observableArrayList("APPETIZERS", "BEVERAGES",
 				"SOUPS", "SALADS",
 				"VEGETABLES", "MAINDISHES",
@@ -210,6 +211,11 @@ public class CreateNewRecipeController implements Initializable {
 				"DESSERTS", "MISCELLANEOUS");
 		categoryComboBox.setValue("APPETIZERS");
 		categoryComboBox.setItems(categoryComboBoxList);
+		
+		if(RecipeBookController.edit){
+			edit(RecipeBookController.getCurrentViewRecipe());
+			RecipeBookController.edit = false;
+		}
 	}
 	
 	//Adds Ingredient to Table on Click
@@ -226,7 +232,7 @@ public class CreateNewRecipeController implements Initializable {
 		 Ingredient ingredient = new Ingredient(ingredientNameText, ingredientAmountText);
 		 IngredientTableData nData = new IngredientTableData(ingredientNameText, ingredientAmountText, ingredient);
 		 observableListITD.add(nData);
-		 ingrediantTableView.setItems(observableListITD);
+		 ingredientTableView.setItems(observableListITD);
 		 //System.out.println("ADDED");
 	 }
 	
@@ -234,12 +240,26 @@ public class CreateNewRecipeController implements Initializable {
 	 @FXML
 	 void onClickDeleteIngrediant(ActionEvent event) {
 		 for(IngredientTableData ingrediantTableData : observableListITD)
-			 if(ingrediantTableView.getSelectionModel().getSelectedItem().equals(ingrediantTableData)){
+			 if(ingredientTableView.getSelectionModel().getSelectedItem().equals(ingrediantTableData)){
 				 observableListITD.remove(ingrediantTableData);
 				 break;
 			 }
-		 ingrediantTableView.setItems(observableListITD);
-		 //System.out.println("DELETED");
+		 ingredientTableView.setItems(observableListITD);
+	 }
+
+	
+	 public void edit(Recipe recipe) {
+		instructions.setText(recipe.instruct);
+		author.setText(recipe.author);
+		cookTime.setText(recipe.cookTime + "");
+		description.setText(recipe.desc);
+		cuisine.setText(recipe.cuisine);
+		prepTime.setText(recipe.prepTime + "");
+		recipeName.setText(recipe.name);
+		favoriteButton.setSelected(recipe.favorite);
+		yields.setText(recipe.yield + "");
+		recipeModel.setUpIngredientTableView(ingredientTableView, recipe.getIngredients());
+		observableListITD = ingredientTableView.getItems();
 	 }
 
 }

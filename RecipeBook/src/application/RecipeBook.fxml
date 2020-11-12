@@ -37,22 +37,20 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#createPage" text="Create New" />
-                  <MenuItem fx:id="openFileOption" mnemonicParsing="false" onAction="#onClickOpenFileOption" text="Open File..." />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickOpenFileOption" text="Open File..." />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Exit" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickExit" text="Exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Edit Current" />
-              <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickEditOption" text="Edit Current" />
+              <MenuItem mnemonicParsing="false" onAction="#onClickDeleteOption" text="Delete" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#onClickAboutOption" text="About" />
             </items>
           </Menu>
         </menus>

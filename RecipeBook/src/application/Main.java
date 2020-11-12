@@ -34,6 +34,7 @@ public class Main extends Application {
 		return primaryStage;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 	}

@@ -14,27 +14,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class RecipeBookController implements Initializable {
 	
-    @FXML
-    private MenuItem openFileOption;
-	
+	public static boolean edit;
+
 	@FXML
 	private Label recipeTitleLabel;
 	
@@ -45,6 +44,7 @@ public class RecipeBookController implements Initializable {
     private TabPane tabPane;
 	
 	private RecipeHandler recipeHandler;
+	private static Recipe currentViewRecipe;
 	
 	@FXML 
 	private TableView<TableData> tableView;
@@ -152,7 +152,48 @@ public class RecipeBookController implements Initializable {
 		}
 		
 	}
-    
+	
+	@FXML
+	void onClickDeleteOption(ActionEvent event){
+		if(getCurrentViewRecipe() != null)
+			recipeHandler.delete(getCurrentViewRecipe());
+		else{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Please select a Recipe to delete first!");
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	void onClickEditOption(ActionEvent event){
+		if(getCurrentViewRecipe() != null){
+			edit = true;
+			createPage(event);
+		}
+		else{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setContentText("Please select a Recipe to edit first!");
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	void onClickAboutOption(ActionEvent event){
+		Alert info = new Alert(AlertType.INFORMATION);
+		info.setTitle("About");
+		info.setHeaderText("Recipe Book");
+		info.setContentText("This is an application to save, view, and create recipes.\nDeveloped by:\n\tJonas English\n\tKevin Nguyen\n\tRishika Someshwar\n\tTravis Sauer");
+		info.showAndWait();
+	}
+	
+	//Exits the application when clicked.
+	@FXML
+	void onClickExit(ActionEvent event){
+		Main.getPrimaryStage().close();
+	}
+	
 	//Open a File Chooser window to select a recipe file.
     @FXML
     void onClickOpenFileOption(ActionEvent event) {
@@ -170,12 +211,15 @@ public class RecipeBookController implements Initializable {
     	try {
 			Recipe recipe = recipeHandler.load(recipeFile);
 			view(recipe);
+			recipeHandler.recipeFileDict.put(recipe, recipeFile);
 		} catch (FileNotFoundException e) {
 			System.out.println("There was an error loading a recipe from File Chooser!");
 		}
     }
 	
 	private void view(Recipe recipe) {
+		//Set to current view recipe
+		setCurrentViewRecipe(recipe);
 		//Change the current tab to the view tab.
 		tabPane.getSelectionModel().select(recipeViewTab);
 		//Display Recipe Name
@@ -183,5 +227,13 @@ public class RecipeBookController implements Initializable {
 		//Sets up the ingredients Table
 		recipeModel.setUpIngredientTableView(ingrediantTableView, recipe.ingredients);
 		
+	}
+
+	public static Recipe getCurrentViewRecipe() {
+		return currentViewRecipe;
+	}
+
+	public void setCurrentViewRecipe(Recipe currentViewRecipe) {
+		this.currentViewRecipe = currentViewRecipe;
 	}
 }
