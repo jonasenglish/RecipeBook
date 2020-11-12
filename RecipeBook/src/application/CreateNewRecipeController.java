@@ -219,8 +219,8 @@ public class CreateNewRecipeController implements Initializable {
 	}
 	
 	//Adds Ingredient to Table on Click
-	 @FXML
-	 void onClickAddIngrediant(ActionEvent event) {
+	@FXML
+	void onClickAddIngrediant(ActionEvent event) {
 		 String ingredientNameText = ingredientName.getText();
 		 String ingredientAmountText = ingredientAmount.getText();
 		 if(ingredientAmountText.contains("@") || ingredientNameText.contains("@")){
@@ -236,9 +236,9 @@ public class CreateNewRecipeController implements Initializable {
 		 //System.out.println("ADDED");
 	 }
 	
-	 //Removes ingredient from Table on Click
-	 @FXML
-	 void onClickDeleteIngrediant(ActionEvent event) {
+	//Removes ingredient from Table on Click
+	@FXML
+	void onClickDeleteIngrediant(ActionEvent event) {
 		 for(IngredientTableData ingrediantTableData : observableListITD)
 			 if(ingredientTableView.getSelectionModel().getSelectedItem().equals(ingrediantTableData)){
 				 observableListITD.remove(ingrediantTableData);
@@ -248,7 +248,7 @@ public class CreateNewRecipeController implements Initializable {
 	 }
 
 	
-	 public void edit(Recipe recipe) {
+	public void edit(Recipe recipe) {
 		instructions.setText(recipe.instruct);
 		author.setText(recipe.author);
 		cookTime.setText(recipe.cookTime + "");

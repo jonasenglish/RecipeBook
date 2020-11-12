@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Optional;
 import java.util.Scanner;
-
-import Model.recipeModel;
 import application.Recipe.Category;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

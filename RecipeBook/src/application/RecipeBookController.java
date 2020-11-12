@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Hashtable;
 import java.util.ResourceBundle;
 import Model.recipeModel;
 import javafx.collections.FXCollections;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -24,6 +26,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -67,6 +70,18 @@ public class RecipeBookController implements Initializable {
 
     @FXML
     private ComboBox<String> searchComboBox;
+    
+    @FXML private Label itemName;
+
+    @FXML private Label authorName;
+
+    @FXML private Label cusineType;
+
+    @FXML private TextArea description;
+
+    @FXML private TextArea instruction;
+    
+    @FXML private CheckBox favoriteCheckBox;
     
     @FXML private TableColumn<IngredientTableData, String> ingrediantNameColumn;
     @FXML private TableView<IngredientTableData> ingrediantTableView;
@@ -188,13 +203,18 @@ public class RecipeBookController implements Initializable {
 		info.showAndWait();
 	}
 	
+	@FXML
+	void onClickFavorite(ActionEvent event){
+		currentViewRecipe.favorite = favoriteCheckBox.isSelected();
+	}
+	
 	//Exits the application when clicked.
 	@FXML
 	void onClickExit(ActionEvent event){
 		Main.getPrimaryStage().close();
 	}
 	
-	//Open a File Chooser window to select a recipe file.
+	//Open a File Chooser window to select a recipe file
     @FXML
     void onClickOpenFileOption(ActionEvent event) {
     	FileChooser fileChooser = new FileChooser();
@@ -210,8 +230,10 @@ public class RecipeBookController implements Initializable {
     		return;
     	try {
 			Recipe recipe = recipeHandler.load(recipeFile);
-			view(recipe);
+			if(recipeHandler.recipeFileDict == null)
+				recipeHandler.recipeFileDict = new Hashtable<Recipe, File>();
 			recipeHandler.recipeFileDict.put(recipe, recipeFile);
+			view(recipe);
 		} catch (FileNotFoundException e) {
 			System.out.println("There was an error loading a recipe from File Chooser!");
 		}
@@ -222,10 +244,15 @@ public class RecipeBookController implements Initializable {
 		setCurrentViewRecipe(recipe);
 		//Change the current tab to the view tab.
 		tabPane.getSelectionModel().select(recipeViewTab);
-		//Display Recipe Name
-		recipeTitleLabel.setText(recipe.name);
 		//Sets up the ingredients Table
 		recipeModel.setUpIngredientTableView(ingrediantTableView, recipe.ingredients);
+		
+		favoriteCheckBox.setSelected(recipe.favorite);	
+		itemName.setText(recipe.name);
+		authorName.setText("By: " + recipe.author);
+		cusineType.setText("Cuisine: " + recipe.cuisine);
+		description.setText(recipe.desc);
+		instruction.setText(recipe.instruct);
 		
 	}
 
@@ -233,6 +260,7 @@ public class RecipeBookController implements Initializable {
 		return currentViewRecipe;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setCurrentViewRecipe(Recipe currentViewRecipe) {
 		this.currentViewRecipe = currentViewRecipe;
 	}

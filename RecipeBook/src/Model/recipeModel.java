@@ -138,7 +138,7 @@ public class recipeModel {
 		    String year = time.substring(0, 4);
 		    String month = time.substring(5, 7);
 		    String dayOfMonth = time.substring(8, 10);
-		    System.out.println(year  + " " + month + " " + dayOfMonth);
+		    //System.out.println(year  + " " + month + " " + dayOfMonth);
 		    date = LocalDate.of(Integer.parseInt(year), Month.of(Integer.parseInt(month)), Integer.parseInt(dayOfMonth));
 		} catch (IOException ex) {
 		    System.out.println("Local Date Error!");

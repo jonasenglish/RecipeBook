@@ -69,18 +69,19 @@
                                        <items>
                                           <Group layoutX="46.0" layoutY="-36.0">
                                              <children>
-                                                <CheckBox layoutX="427.0" layoutY="41.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="74.0" text="Favorite" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="392.0" layoutY="24.0" prefHeight="17.0" prefWidth="123.0" text="By: Author Name" textAlignment="RIGHT" />
-                                                <Label fx:id="recipeTitleLabel" alignment="TOP_LEFT" layoutX="-46.0" layoutY="20.0" prefHeight="42.0" prefWidth="473.0" text="Recipe Title: Spicy Gyro" wrapText="true">
+                                                <CheckBox fx:id="favoriteCheckBox" layoutX="427.0" layoutY="41.0" mnemonicParsing="false" onAction="#onClickFavorite" prefHeight="22.0" prefWidth="74.0" text="Favorite" />
+                                                <Label fx:id="authorName" alignment="CENTER_RIGHT" layoutX="392.0" layoutY="24.0" prefHeight="17.0" prefWidth="123.0" text="By: Author Name" textAlignment="RIGHT" />
+                                                <Label fx:id="itemName" alignment="TOP_LEFT" layoutX="-46.0" layoutY="20.0" prefHeight="25.0" prefWidth="425.0" text="Recipe Title: Spicy Gyro" wrapText="true">
                                                    <font>
                                                       <Font name="System Bold" size="15.0" />
                                                    </font>
                                                 </Label>
+                                                <Label fx:id="cusineType" alignment="BOTTOM_LEFT" layoutX="-46.0" layoutY="40.0" prefHeight="25.0" prefWidth="425.0" text="Cuisine: Mediterranian" wrapText="true" />
                                              </children>
                                           </Group>
                                           <SplitPane dividerPositions="0.5">
                                              <items>
-                                                <Label alignment="TOP_LEFT" prefHeight="201.0" prefWidth="362.0" text="Short Description here.                                                                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrapText="true" />
+                                                <TextArea fx:id="description" prefHeight="201.0" prefWidth="362.0" text="Short Description here.                                                                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrapText="true" />
                                                 <ImageView fitHeight="200.0" fitWidth="183.0" layoutX="374.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="475.0" AnchorPane.leftAnchor="383.0" AnchorPane.rightAnchor="34.0">
                                                    <image>
                                                       <Image url="@Gyro.jpeg" />
@@ -96,7 +97,14 @@
                                           </TableView>
                                           <Group>
                                              <children>
-                                                <Label alignment="TOP_LEFT" layoutY="10.0" prefHeight="201.0" prefWidth="566.0" text="Instructions go here                                                                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrapText="true" GridPane.rowIndex="1" />
+                                                <TextArea fx:id="instruction" editable="false" prefHeight="200.0" prefWidth="565.0" text="Instructions go here                                                                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrapText="true">
+                                                   <opaqueInsets>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </opaqueInsets>
+                                                   <padding>
+                                                      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                   </padding>
+                                                </TextArea>
                                              </children>
                                           </Group>
                                           <Button layoutY="79.0" mnemonicParsing="false" onAction="#printRecipeButton" text="Test Button" GridPane.rowIndex="1" />
