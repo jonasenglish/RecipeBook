@@ -30,6 +30,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -83,6 +85,8 @@ public class RecipeBookController implements Initializable {
     
     @FXML private CheckBox favoriteCheckBox;
     
+    @FXML private ImageView recipeImage;
+    
     @FXML private TableColumn<IngredientTableData, String> ingrediantNameColumn;
     @FXML private TableView<IngredientTableData> ingrediantTableView;
     @FXML private TableColumn<IngredientTableData, String> ingrediantAmountColumn;
@@ -124,12 +128,6 @@ public class RecipeBookController implements Initializable {
 		    //System.out.println("textfield changed from " + oldValue + " to " + newValue);
 		});	
 		*/
-	}
-
-	//Button to test the Recipe Object - Outputs to Console.
-	@FXML
-	void printRecipeButton(ActionEvent event) {
-		recipeModel.TestButton();
 	}
 	
 	//Called when the Search Button is Clicked or when Enter is pressed in the searchText TextField.
@@ -253,7 +251,9 @@ public class RecipeBookController implements Initializable {
 		cusineType.setText("Cuisine: " + recipe.cuisine);
 		description.setText(recipe.desc);
 		instruction.setText(recipe.instruct);
-		
+		String fixImageURL = recipe.imageURL;
+		Image newImage = new Image(fixImageURL);
+		recipeImage.setImage(newImage);
 	}
 
 	public static Recipe getCurrentViewRecipe() {

@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="createPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="806.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateNewRecipeController">
+<AnchorPane fx:id="createPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateNewRecipeController">
    <children>
       <Label layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="160.0" text="Recipe Name:" />
       <Label layoutX="12.0" layoutY="78.0" prefHeight="25.0" prefWidth="160.0" text="Yields:" />
@@ -41,8 +41,11 @@
           <TableColumn fx:id="ingredientAmountColumn" prefWidth="354.0" text="Ingrediant Amount" />
         </columns>
       </TableView>
-      <Label layoutX="366.0" layoutY="124.0" prefHeight="25.0" prefWidth="160.0" text="Category" />
-      <CheckBox fx:id="favoriteButton" layoutX="366.0" layoutY="176.0" mnemonicParsing="false" text="Favorite" />
+      <Label layoutX="366.0" layoutY="124.0" prefHeight="25.0" prefWidth="160.0" text="Category:" />
+      <CheckBox fx:id="favoriteButton" layoutX="618.0" layoutY="217.0" mnemonicParsing="false" text="Favorite" />
       <ComboBox fx:id="categoryComboBox" layoutX="543.0" layoutY="124.0" prefWidth="150.0" />
+      <TextField fx:id="image" layoutX="452.0" layoutY="172.0" prefHeight="10.0" prefWidth="149.0" promptText="Works with URLs!" />
+      <Label layoutX="366.0" layoutY="172.0" prefHeight="25.0" prefWidth="75.0" text="Image:" />
+      <Button layoutX="618.0" layoutY="172.0" mnemonicParsing="false" onAction="#onClickFindImage" text="Find Image" />
    </children>
 </AnchorPane>
