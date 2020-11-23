@@ -21,12 +21,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.ResourceBundle;
 
 import Model.recipeModel;
@@ -85,6 +88,9 @@ public class CreateNewRecipeController implements Initializable {
 
     @FXML
     private TextField yields;
+    
+    @FXML
+    private TextField image;
 
     @FXML
     private Button saveRecipe;
@@ -148,6 +154,12 @@ public class CreateNewRecipeController implements Initializable {
 			recipe.setIngredients(getIngrediants());
 			recipe.setCategory(Category.valueOf(categoryComboBox.getValue()));
 			recipe.setFavorite(favoriteButton.isSelected());
+			if(!(image.getText().contains("http"))){
+				String fixImageURL = "file:" + image.getText();
+				recipe.setImageURL(fixImageURL);
+			}else{
+				recipe.setImageURL(image.getText());
+			}
 			File file = recipeHandle.save(recipe);
 			if(file.exists())
 			{
@@ -247,6 +259,23 @@ public class CreateNewRecipeController implements Initializable {
 		 ingredientTableView.setItems(observableListITD);
 	 }
 
+	//Gets image location
+	@FXML
+	void onClickFindImage(ActionEvent event){
+		FileChooser fileChooser = new FileChooser();
+    	fileChooser.setTitle("Open Recipe File");
+    	fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PNG", "*.png"),
+                new FileChooser.ExtensionFilter("JPEG", "*.jpg", "*.jpeg"),
+                new FileChooser.ExtensionFilter("GIF", "*.gif"),
+                new FileChooser.ExtensionFilter("All Files", "*.*")
+            );
+    	File imageFile = fileChooser.showOpenDialog(Main.getPrimaryStage());
+    	if(imageFile == null)
+    		return;
+		
+    	image.setText(imageFile.getAbsolutePath());	
+	}
 	
 	public void edit(Recipe recipe) {
 		instructions.setText(recipe.instruct);
@@ -260,6 +289,7 @@ public class CreateNewRecipeController implements Initializable {
 		yields.setText(recipe.yield + "");
 		recipeModel.setUpIngredientTableView(ingredientTableView, recipe.getIngredients());
 		observableListITD = ingredientTableView.getItems();
+		image.setText(recipe.imageURL);
 	 }
 
 }
