@@ -26,7 +26,7 @@ public class RecipeHandler {
 	
 	//The Default path to the Recipes Folder is in the Same folder as the application.
 	public RecipeHandler(){
-		this.recipeFolderPath = getClass().getResource("").getPath() + "/recipes/";
+		this.recipeFolderPath = "recipes/";
 	}
 	
 	//Changing the path to the folder containing Recipes. Useful if the folder containing recipes is different than the default.
