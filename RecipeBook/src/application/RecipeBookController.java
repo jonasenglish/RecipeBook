@@ -222,6 +222,7 @@ public class RecipeBookController implements Initializable {
                 new FileChooser.ExtensionFilter("All Files", "*.*")
             );
     	File recipeFolderPath = new File(recipeHandler.recipeFolderPath);
+    	if(recipeFolderPath.exists())
     	fileChooser.setInitialDirectory(recipeFolderPath);
     	File recipeFile = fileChooser.showOpenDialog(Main.getPrimaryStage());
     	if(recipeFile == null)
