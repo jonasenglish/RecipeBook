@@ -14,7 +14,7 @@ to run the .jar file, you will need to copy and paste this link into your browse
 and you will see a "clickable" item read as: "Jarx-1.2-installer.exe (74 kB)." Click on this item and save/download it to your local machine. Then navigate to your downloads folder and run this file as administrator; you can leave the default location as it is for installation. Now go to the location where you downloaded your 
 JAR file, right-click it, mouse over "open with," and click Execute Java JAR-files. Now you'll be able to use the Recipe Book application.
 
-Method 2: 
+Method 2: Cloning the repository from GitHub into Eclipse
 
 Assuming EGit is installed and set-up within Eclipse: Select File from the menu at the top of Eclipse, then import, select Git, click "Projects from Git" and hit next.
 Select "Clone URI" and click next. Now we need to navigate to the repo's home-page via the link: https://github.com/jonasenglish/RecipeBook. Left-click the green button labeled "Code" and copy the HTTPS URI, which is: https://github.com/jonasenglish/RecipeBook.git. Goto Eclipse and paste the link into the URI field, and it will populate the rest of the fields (you will need to connect to your GitHub account, i.e. enter your login credentials before clicking next). Ensure
