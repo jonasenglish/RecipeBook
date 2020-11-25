@@ -2,6 +2,7 @@ package application;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Hashtable;
@@ -169,7 +170,11 @@ public class RecipeBookController implements Initializable {
 	@FXML
 	void onClickDeleteOption(ActionEvent event){
 		if(getCurrentViewRecipe() != null)
-			recipeHandler.delete(getCurrentViewRecipe());
+			try {
+				recipeHandler.delete(getCurrentViewRecipe());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		else{
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");

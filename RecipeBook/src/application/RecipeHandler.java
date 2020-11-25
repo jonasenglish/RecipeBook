@@ -60,7 +60,7 @@ public class RecipeHandler {
 	
 		//Saving to File
 		FileWriter fileWriter = new FileWriter(recipeFile);
-		fileWriter.write(recipe.getName() + "\n" + recipe.getAuthor() + "\n" + recipe.getCuisine() + "\n" + recipe.getDesc() + "\n" + recipe.getInstruct() + "\n" + 
+		fileWriter.write(recipe.getName() + "\n" + recipe.getAuthor() + "\n" + recipe.getCuisine() + "\n" + recipe.getDesc() + "\n" + recipe.getInstruct() + "\n%END%\n" + 
 		recipe.imageURL + "\n" + recipe.getYield() + "\n" + recipe.getPrepTime() + "\n" + recipe.getCookTime() + "\n" + recipe.getCategory() + "\n" + recipe.favorite);
 		saveNutrition(recipe.nutrition, fileWriter);
 		saveIngredient(recipe.ingredients, fileWriter);
@@ -101,7 +101,13 @@ public class RecipeHandler {
 		recipe.author = scanner.nextLine();
 		recipe.cuisine = scanner.nextLine();
 		recipe.desc = scanner.nextLine();
-		recipe.instruct = scanner.nextLine();
+		String instruct = "";
+		String line = scanner.nextLine(); 
+		do{
+			instruct += line + "\n";
+			line = scanner.nextLine();
+		}while(!line.equals("%END%"));
+		recipe.instruct = instruct;
 		recipe.imageURL = scanner.nextLine();
 		
 		recipe.yield = scanner.nextInt();
@@ -118,7 +124,7 @@ public class RecipeHandler {
 		} catch(Exception e){
 			throw e;
 		}
-		
+		scanner.close();
 		return recipe;
 	}
 	
@@ -196,7 +202,7 @@ public class RecipeHandler {
 		return recipeFileDict;
 	}
 
-	public void delete(Recipe recipe) {
+	public void delete(Recipe recipe) throws IOException {
 		ButtonType yesButton = new ButtonType("Yes", ButtonData.YES);
 		ButtonType noButton = new ButtonType("No", ButtonData.NO);
 		ButtonType okButton = new ButtonType("Ok", ButtonData.OK_DONE);
@@ -207,14 +213,16 @@ public class RecipeHandler {
 		alert.getButtonTypes().add(okButton);
 		if (result.orElse(noButton) == yesButton) {
 			File recipeFile = recipeFileDict.get(recipe);
-			if(recipeFile.delete()){
+			String path = recipeFile.getCanonicalPath();
+			File recipeFilePath = new File(path);
+			if(recipeFilePath.delete()){
 				alert.setAlertType(AlertType.INFORMATION);
 				alert.setContentText(recipe.name + " was deleted.");
 				alert.showAndWait();
 				recipeFileDict.remove(recipe);
 			}else{
 				alert.setAlertType(AlertType.ERROR);
-				alert.setContentText("Error, could not delete " + recipeFile.getName() + ".\nAt path:\n " + recipeFile.getPath());
+				alert.setContentText("Error, could not delete " + recipeFile.getName() + ".\nAt path:\n " + recipeFile.getCanonicalPath());
 				alert.showAndWait();
 			}
 		}
